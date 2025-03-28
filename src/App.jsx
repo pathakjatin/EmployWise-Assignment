@@ -7,11 +7,13 @@ import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import Homepage from "./pages/Homepage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
+import PrivateRoute from "./PrivateRoute.jsx"
 import { lightTheme, darkTheme } from "./ThemeContext";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CodeIcon from "@mui/icons-material/Code"
+import './index.css'
 
 export default function App() {
   return (
@@ -50,7 +52,14 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/user" element={<UserPage />} />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute>
+                <UserPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </DashboardLayout>
     </AppProvider>
