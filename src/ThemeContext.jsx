@@ -10,7 +10,7 @@ export const lightTheme = {
     success: { main: "#27AE60" },
     error: { main: "#FF312E" },
     background: { default: "#fefefe", paper: "#fff" },
-    text: { primary: "#353535", secondary: "#515052" },
+    text: { primary: "#353535", secondary: "#6C757D" },
     action: { hover: "rgba(165, 105, 240, 0.2)" },
   },
   shadows: [
@@ -28,7 +28,7 @@ export const darkTheme = {
     success: { main: "#27AE60" },
     error: { main: "#FF312E" },
     background: { default: "#000103", paper: "#353535" },
-    text: { primary: "#fefefe", secondary: "#515052" },
+    text: { primary: "#fefefe", secondary: "#6C757D" },
     action: { hover: "rgba(255, 165, 0, 0.15)" },
   },
   shadows: [
