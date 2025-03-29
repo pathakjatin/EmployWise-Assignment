@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Box, Typography, Button, useTheme } from "@mui/material";
 import { TypeWriterEffect } from "../components/TypeWriterEffect";
 import { ThemeContext } from "../ThemeContext";
+import { Link } from "react-router-dom";
 
 
 export default function Homepage() {
@@ -73,7 +74,8 @@ export default function Homepage() {
           mt: 3,
         }}
       >
-        <Button
+    <Link to="/user">
+    <Button
           variant="contained"
           sx={{
             width: "160px",
@@ -85,10 +87,12 @@ export default function Homepage() {
             border: darkMode ? "1px solid white" : "none",
           }}
         >
-          Join Now
+          View Users
         </Button>
+    </Link>
 
-        <Button
+    <Link to="/login">
+    <Button
           variant="outlined"
           sx={{
             width: "160px",
@@ -100,8 +104,10 @@ export default function Homepage() {
             "&:hover": { backgroundColor: theme.palette.action.hover },
           }}
         >
-          Signup
+          Login
         </Button>
+    </Link>
+
       </Box>
     </Box>
 

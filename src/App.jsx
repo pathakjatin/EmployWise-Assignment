@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
 import PrivateRoute from "./PrivateRoute.jsx"
+import Footer from "./components/Footer.jsx";
 import { lightTheme, darkTheme } from "./ThemeContext";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -26,25 +27,34 @@ export default function App() {
 function AppContent() {
 
   const NAVIGATION = [
-    { segment: "/", title: "Home", icon: <Link to="/"><HomeIcon /></Link> },
-    { segment: "/user", title: "User", icon: <Link to="/user"><PersonIcon /></Link> },
-    { segment: "/login", title: "Login", icon: <Link to="/login"><LockOpenIcon /></Link> },
+    { segment: "/", title: "Home", icon: <HomeIcon />, path: "/" },
+    { segment: "/user", title: "User", icon: <PersonIcon />, path: "/user" },
+    { segment: "/login", title: "Login", icon: <LockOpenIcon />, path: "/login" },
   ];
+  
   
 
   const muiLightTheme = useMemo(() => createTheme(lightTheme), []);
   const muiDarkTheme = useMemo(() => createTheme(darkTheme), []);
 
   return (
-    <AppProvider 
-      navigation={NAVIGATION} 
-      theme={{ light: muiLightTheme, dark: muiDarkTheme }}
-      branding={{
-        logo: <CodeIcon/>,
-        title: 'JP',
-        homeUrl: '/',
-      }}
-    >
+<AppProvider
+  navigation={NAVIGATION.map((item) => ({
+    ...item,
+    icon: (
+      <Link to={item.path} style={{ color: "inherit", textDecoration: "none" }}>
+        {item.icon}
+      </Link>
+    ),
+  }))} 
+  theme={{ light: muiLightTheme, dark: muiDarkTheme }}
+  branding={{
+    logo: <CodeIcon />,
+    title: "JP",
+    homeUrl: "/",
+  }}
+>
+
       <DashboardLayout defaultSidebarCollapsed>
         <CssBaseline />
         
@@ -61,6 +71,7 @@ function AppContent() {
             }
           />
         </Routes>
+        <Footer/>
       </DashboardLayout>
     </AppProvider>
   );

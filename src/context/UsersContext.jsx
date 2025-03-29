@@ -8,12 +8,12 @@ export const UsersProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchUsers(page);
-  }, [page]); // ✅ Only fetches when page changes
-
-  // ✅ Fetch users from API
+  }, [page]);
+  
   const fetchUsers = async (pageNumber) => {
     setLoading(true);
     try {
@@ -29,7 +29,7 @@ export const UsersProvider = ({ children }) => {
   // ✅ Update user in UI and API
   const updateUser = async (updatedUser) => {
     try {
-      // ✅ Convert field names to match API requirements
+
       const updatedData = {
         first_name: updatedUser.firstName,
         last_name: updatedUser.lastName,
@@ -39,8 +39,7 @@ export const UsersProvider = ({ children }) => {
       await axios.put(`https://reqres.in/api/users/${updatedUser.id}`, updatedData);
   
       console.log("Updating user with data:", updatedData);
-  
-      // ✅ Correct way to update state
+
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.id === updatedUser.id ? { ...user, ...updatedData } : user
@@ -60,8 +59,7 @@ export const UsersProvider = ({ children }) => {
   const deleteUser = async (userId) => {
     try {
       await axios.delete(`https://reqres.in/api/users/${userId}`);
-  
-      // ✅ Correct way to update state
+
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
   
       alert("User deleted successfully!");
@@ -70,10 +68,22 @@ export const UsersProvider = ({ children }) => {
       alert("Failed to delete user!");
     }
   };
+
+    const handleSearch = (query) => {
+      setSearchQuery(query.toLowerCase());
+    };
+  
+
+    const filteredUsers = users.filter(
+      (user) =>
+        user.first_name.toLowerCase().includes(searchQuery) ||
+        user.last_name.toLowerCase().includes(searchQuery) ||
+        user.email.toLowerCase().includes(searchQuery)
+    );
   
 
   return (
-    <UsersContext.Provider value={{ users, page, setPage, totalPages, loading, updateUser, deleteUser }}>
+    <UsersContext.Provider value={{ users:filteredUsers, page, setPage, totalPages, loading, updateUser, deleteUser, handleSearch }}>
       {children}
     </UsersContext.Provider>
   );

@@ -10,13 +10,13 @@ const Label = React.forwardRef(({ className, sx, ...props }, ref) => {
       ref={ref}
       component="label"
       sx={{
-        fontSize: "0.875rem", // Equivalent to text-sm
-        fontWeight: "500", // Medium font
+        fontSize: "0.875rem",
+        fontWeight: "500", 
         color: darkMode ? "text.primary" : "text.secondary",
         lineHeight: "1.25",
         opacity: props.disabled ? 0.7 : 1,
         cursor: props.disabled ? "not-allowed" : "pointer",
-        ...sx, // Allow additional MUI styling
+        ...sx, 
       }}
       {...props}
     />

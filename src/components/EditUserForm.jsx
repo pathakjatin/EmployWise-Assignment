@@ -7,17 +7,17 @@ export default function EditUserForm({ open, onClose, user, updateUser }) {
   const [editedUser, setEditedUser] = useState(user);
   const [loading, setLoading] = useState(false);
 
-  // Handle Input Changes
+
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
   };
 
-  // Handle Save
+
   const handleSave = async () => {
     setLoading(true);
     await updateUser(editedUser);
     setLoading(false);
-    onClose(); // ✅ Close modal after saving
+    onClose(); 
   };
 
   return (

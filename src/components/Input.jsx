@@ -7,7 +7,7 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
   const { darkMode } = useContext(ThemeContext);
   const theme = useTheme();
 
-  const radius = 100; // Adjust this to change the hover effect radius
+  const radius = 100; 
   const [visible, setVisible] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);

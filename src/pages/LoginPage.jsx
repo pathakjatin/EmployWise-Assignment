@@ -11,7 +11,7 @@ export default function LoginPage() {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  // Empty fields by default
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
